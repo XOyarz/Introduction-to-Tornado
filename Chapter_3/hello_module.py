@@ -1,4 +1,4 @@
-import tornado,web
+import tornado.web
 import tornado.httpserver
 import tornado.ioloop
 import tornado.options
@@ -17,7 +17,13 @@ class HelloModule(tornado.web.UIModule):
 
 class BookModule(tornado.web.UIModule):
     def render(self, book):
-        return self.render_string('modules/book.html', book=book)
+        return self.render_string('modules/book.html', book=book,)
+
+    def embedded_javascript(self):
+        return "document.write(\'hi!\')"
+
+    def embedded_css(self):
+        return ".book {background-color:#F5F5F5}"
 
 class RecommendedHandler(tornado.web.RequestHandler):
     def get(self):
