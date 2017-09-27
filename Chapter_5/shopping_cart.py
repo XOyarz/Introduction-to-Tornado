@@ -63,7 +63,8 @@ class CartHandler(tornado.web.RequestHandler):
 class StatusHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     def get(self):
-        self.application.shoppingCart.register(self.async_callback(self.on_message))
+        #self.application.shoppingCart.register(self.async_callback(self.on_message))
+        self.application.shoppingCart.register(self.on_message)
 
     def on_message(self, count):
         self.write('{"inventoryCount":"%d"}' % count)
